@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "survey-dev",
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": ["-c", "SURVEY_DB=app/data/dev.sqlite3 PORT=5051 exec .venv/bin/python app/server.py"],
+      "port": 5051
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "app/server.py": {
+      "includeFiles": "survey/*.csv",
+      "excludeFiles": "{analysis/**,app/test_server.py,.venv/**}"
+    }
+  }
+}

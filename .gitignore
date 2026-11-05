@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+# local development database only; production responses are stored in Neon
+# survey responses never go into git
+app/data/
+exports/
+
+.tmp-pip/
+.tmp-pytest/

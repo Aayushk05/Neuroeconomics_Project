@@ -1,0 +1,5 @@
+screen,position,role,salary_level,varpay,arrangement,hours,autonomy,growth
+4,A,better,1.25,cash,hybrid,40,choose,track
+4,B,worse,0.8,cash,hybrid,60,assigned,none
+9,A,worse,0.8,bonus,remote,60,assigned,none
+9,B,better,1.25,bonus,remote,40,choose,track
