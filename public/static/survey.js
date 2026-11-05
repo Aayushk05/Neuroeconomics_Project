@@ -336,7 +336,12 @@ function b4() {
   const value = (k) => { const t = $(`#${k}`).value.trim(); return t === "" ? 0 : /^\d+$/.test(t) && +t <= 100 ? +t : NaN; };
   show("b4", `
     <h2>What mattered</h2>
-    <p>Split <b>100 points</b> across the six features by how much each mattered in your choices, within the ranges you saw.</p>
+    <p>Think back to the 10 job comparisons you just completed. You have <b>100 points</b> to distribute across the six features below.
+  Allocate more points to features that had a greater influence on
+  which job you chose. You can assign zero points to a feature that
+  didn't influence your decisions. Your points must add up to
+  exactly 100.
+</p>
     <div class="points">
       ${rows.map(([k, label, range]) => `<label class="pt"><span class="pt-label"><b>${label}</b><small>${range}</small></span>
         <input id="${k}" type="text" inputmode="numeric" autocomplete="off" placeholder="0"></label>`).join("")}
