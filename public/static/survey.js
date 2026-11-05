@@ -273,7 +273,7 @@ function priceList(id, intro, [headA, headB], rows, question, noneLabel, onNext)
       ${rows.map(([a, b], i) => `<tr><td>${i + 1}</td><td>${a}</td><td>${b}</td></tr>`).join("")}
     </tbody></table>
     <h3>${question}</h3>
-    ${radios(id, [...rows.map((_, i) => [String(i + 1), `Row ${i + 1}`]), ["none", noneLabel]], { inline: true })}`,
+    ${radios(id, [...rows.map((_, i) => [String(i + 1), `Row ${i + 1} onwards`]), ["none", noneLabel]], { inline: true })}`,
   { valid: () => !!checked(id), next: () => onNext(checked(id)) });
   // The "None" option reads better on its own line.
   main.querySelector(`input[name="${id}"][value="none"]`).closest(".radio").style.gridColumn = "1 / -1";
@@ -285,7 +285,7 @@ function b1() {
     <p>Your employer owes you a one-time payment: <b>₹2,00,000 today</b>, or more <b>in 12 months</b>. Both are guaranteed.</p>`,
   ["Today", "In 12 months"],
   ["₹2,10,000", "₹2,20,000", "₹2,40,000", "₹2,70,000", "₹3,00,000"].map((x) => ["₹2,00,000", x]),
-  "From which row would you wait?",
+  "From which row onwards would you choose the later payment?",
   "None — I'd take ₹2,00,000 today in every row",
   (v) => { state.a.b1_switch = v; b2(); });
 }
@@ -297,7 +297,7 @@ function b2() {
   ["For sure", "Chance the shares pay ₹4,00,000"],
   [["30%", "3 in 10"], ["50%", "5 in 10"], ["65%", "about 2 in 3"], ["80%", "8 in 10"], ["95%", "19 in 20"]]
     .map(([p, f]) => ["₹2,00,000", `${p} (${f})`]),
-  "From which row would you take the shares?",
+  "From which row onwards would you choose the shares?",
   "None — I'd take ₹2,00,000 for sure in every row",
   (v) => { state.a.b2_switch = v; b3(); });
 }
@@ -314,7 +314,7 @@ function twoWorlds(id, intro, worlds, onNext) {
 function b3() {
   const S = state.S;
   twoWorlds("b3",
-    "Prices are the same in both worlds. Which would you rather live in?",
+    "Imagine two otherwise identical worlds. The cost of living, prices and all other living conditions are the same in both worlds. Only your annual compensation and the average compensation of other people in your field differ.",
     {
       positional: `You earn ${rupees(S)} a year. Other people in your field earn ${rupees(S / 2)} on average.`,
       absolute: `You earn ${rupees(2 * S)} a year. Other people in your field earn ${rupees(4 * S)} on average.`,
