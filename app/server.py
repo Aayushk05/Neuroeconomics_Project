@@ -221,11 +221,13 @@ def create_app(db_path=None, database_url=None):
                     "INSERT INTO participants (token, code, pilot, block, answers, submitted_at) "
                     "VALUES (%s, %s, %s, %s, %s, %s) RETURNING pid",
                     (body["token"], code, pilot, block, json.dumps(answers), now)).fetchone()[0]
-                conn.executemany(
-                    "INSERT INTO choices VALUES (%(pid)s, %(block)s, %(set_id)s, %(kind)s, %(pair)s, "
-                    "%(alt_id)s, %(flipped)s, %(chosen)s, %(salary_level)s, %(salary)s, %(varpay)s, "
-                    "%(arrangement)s, %(hours)s, %(autonomy)s, %(growth)s, %(rt_ms)s)",
-                    [dict(r, pid=pid, block=block) for r in rows])
+                with conn.cursor() as cur:
+                    cur.executemany(
+                        "INSERT INTO choices VALUES (%(pid)s, %(block)s, %(set_id)s, %(kind)s, %(pair)s, "
+                        "%(alt_id)s, %(flipped)s, %(chosen)s, %(salary_level)s, %(salary)s, %(varpay)s, "
+                        "%(arrangement)s, %(hours)s, %(autonomy)s, %(growth)s, %(rt_ms)s)",
+                        [dict(r, pid=pid, block=block) for r in rows]
+                    )
             else:
                 pid = conn.execute(
                     "INSERT INTO participants (token, code, pilot, block, answers, submitted_at) "
