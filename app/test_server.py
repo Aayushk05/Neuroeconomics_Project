@@ -40,7 +40,7 @@ def answers(token, plan, S=12.0, path="pro", **override):
                      "ctc_B": js_round1(s["B"]["salary_level"] * S)} for s in plan],
         "b1_switch": "2", "b2_switch": "none", "b3a_choice": "absolute", "b3a_order": "positional_first",
         "b4_ctc": 40, "b4_varpay": 10, "b4_arrangement": 20, "b4_hours": 15, "b4_autonomy": 5, "b4_growth": 10,
-        "d1_age": "22-25", "d2_gender": "na", "d3_stock": "no", "d4_channel": "other", "d4_other": "  Reddit ",
+        "d1_age": "22-25", "d2_gender": "na", "d3_stock": "no",
         "e1_text": "", "total_time_s": 512.3, "screen_times": {"consent": 30000},
     }
     if path in ("pro", "between"):
@@ -107,7 +107,7 @@ def test_professional_submission_round_trip(app, client, tmp_path):
     assert list(person) == PARTICIPANT_COLUMNS
     assert person["code"] == code and person["path"] == "professional"
     assert person["anchor_ctc"] == "13.7" and person["anchor_type"] == "current"
-    assert person["d4_other"] == "Reddit" and person["d2_self"] == ""
+    assert person["d2_self"] == ""
     assert person["st2_field"] == "" and person["j8_satisfaction"] == "7"
     for cut in ("b3b_choice", "st1_degree", "j2_company"):    # items dropped to shorten the survey
         assert cut not in person

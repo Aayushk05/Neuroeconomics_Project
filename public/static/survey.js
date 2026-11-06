@@ -370,18 +370,16 @@ function background() {
     <h2>About you</h2>
     <fieldset><legend>Your age</legend>${radios("d1", [["18-21", "18–21"], ["22-25", "22–25"], ["26-30", "26–30"], ["31-35", "31–35"], ["36-45", "36–45"], ["46+", "46 or older"]], { inline: true })}</fieldset>
     <fieldset><legend>Your gender</legend>${withOther("d2", [["woman", "Woman"], ["man", "Man"], ["nonbinary", "Non-binary"], ["self", "Prefer to self-describe"], ["na", "Prefer not to say"]], "d2_self", "Self-describe (optional)")}</fieldset>
-    <fieldset><legend>Have you ever been granted stock as part of your pay?</legend>${radios("d3", [["esop", "Yes, ESOPs in a private company"], ["rsu", "Yes, RSUs in a listed company"], ["both", "Yes, both"], ["no", "No"], ["unsure", "Not sure"]])}</fieldset>
-    <fieldset><legend>How did you hear about this survey?</legend>${withOther("d4", [["placement", "Placement cell / my batch"], ["alumni", "Alumni network"], ["linkedin", "LinkedIn"], ["discord", "A developer Discord or community"], ["friend", "A friend or colleague"], ["other", "Other"]], "d4_other", "Where? (optional)")}</fieldset>`,
+    <fieldset><legend>Have you ever been granted stock as part of your pay?</legend>${radios("d3", [["esop", "Yes, ESOPs in a private company"], ["rsu", "Yes, RSUs in a listed company"], ["both", "Yes, both"], ["no", "No"], ["unsure", "Not sure"]])}</fieldset>`,
   {
     valid: () => {
       $("#d2_self").hidden = checked("d2") !== "self";
-      $("#d4_other").hidden = checked("d4") !== "other";
-      return ["d1", "d2", "d3", "d4"].every((q) => checked(q));
+      return ["d1", "d2", "d3"].every((q) => checked(q));
     },
     next: () => {
       Object.assign(state.a, {
         d1_age: checked("d1"), d2_gender: checked("d2"), d2_self: $("#d2_self").value,
-        d3_stock: checked("d3"), d4_channel: checked("d4"), d4_other: $("#d4_other").value,
+        d3_stock: checked("d3"),
       });
       if (state.path === "student") student(); else work();
     },
@@ -475,9 +473,8 @@ function finish(code) {
   const link = CFG.shareLink ? `<a href="${esc(CFG.shareLink)}">${esc(CFG.shareLink)}</a>` : ph("shareLink", "LINK");
   show("end", `
     <h2>Thank you, you're done.</h2>
-    <p>Your participant code is <b class="code">${esc(code)}</b>. To have your answers deleted, email it to ${ph("contactEmail", "CONTACT EMAIL")} before ${ph("withdrawBy", "WITHDRAW BY")}.</p>
     <p>The job offers were made up, with pay set around ${state.anchorNA ? "a typical CTC" : "the CTC you gave us"}. We're measuring how much people value things like remote work, hours and growth compared with pay. Please don't discuss the questions with anyone who might still take part.</p>
-    <p>Know someone eligible? Share this link: ${link}</p>`);
+    <p>Know someone eligible? Please share this survey with them.</p>`);
 }
 
 document.getElementById("pilot-badge").hidden = !PILOT;

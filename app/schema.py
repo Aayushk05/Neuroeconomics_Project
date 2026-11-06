@@ -19,7 +19,6 @@ COMMON = {
     "d1_age": {"18-21", "22-25", "26-30", "31-35", "36-45", "46+"},
     "d2_gender": {"woman", "man", "nonbinary", "self", "na"},
     "d3_stock": {"esop", "rsu", "both", "no", "unsure"},
-    "d4_channel": {"placement", "alumni", "linkedin", "discord", "friend", "other"},
 }
 # Item ids keep their survey_copy.md numbers; ST1, J2 and B3b were cut on 2 Nov to shorten the survey.
 STUDENT = {
@@ -34,7 +33,7 @@ WORKER = {
     "j7_growth": {"none", "mentor_budget", "track", "track_plus"},
 }
 # Free text, kept only when the answer it belongs to asks for it.
-TEXT = {"d2_self": ("d2_gender", "self"), "d4_other": ("d4_channel", "other"),
+TEXT = {"d2_self": ("d2_gender", "self"),
         "st2_other": ("st2_field", "other")}
 B4 = ["b4_ctc", "b4_varpay", "b4_arrangement", "b4_hours", "b4_autonomy", "b4_growth"]
 
